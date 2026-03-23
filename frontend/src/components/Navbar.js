@@ -19,31 +19,54 @@ function Navbar() {
     };
 
     return (
-        <nav className="navbar">
-            <div className="navbar-brand">
-                <Link to="/dashboard">LMS Portal</Link>
-            </div>
-            <div className="navbar-links">
-                <Link to="/courses">Courses</Link>
+        <nav className="bg-blue-600 text-white px-6 py-4 flex items-center justify-between shadow-md">
+            {/* Brand */}
+            <Link to="/dashboard" className="text-xl font-bold tracking-wide hover:opacity-90">
+                LMS Portal
+            </Link>
+
+            {/* Nav Links */}
+            <div className="flex items-center gap-6 text-sm font-medium">
+                <Link to="/courses" className="hover:underline">
+                    Courses
+                </Link>
 
                 {/* Student only */}
-                {user?.role === "student" && (
-                    <Link to="/my-courses">My Courses</Link>
+                {user?.role === 'student' && (
+                    <Link to="/my-courses" className="hover:underline">
+                        My Courses
+                    </Link>
                 )}
 
-                {/* Teacher/Admin */}
-                {(user?.role === "teacher" || user?.role === "admin") && (
-                    <Link to="/manage-courses">Manage Courses</Link>
+                {/* Teacher and Admin */}
+                {(user?.role === 'teacher' || user?.role === 'admin') && (
+                    <Link to="/manage-courses" className="hover:underline">
+                        Manage Courses
+                    </Link>
                 )}
 
                 {/* Admin only */}
-                {user?.role === "admin" && (
-                    <Link to="/users">Users</Link>
+                {user?.role === 'admin' && (
+                    <Link to="/users" className="hover:underline">
+                        Users
+                    </Link>
                 )}
-                </div>
-            <div className="navbar-user">
-                <span>👤 {user?.username} ({user?.role})</span>
-                <button onClick={handleLogout}>Logout</button>
+            </div>
+
+            {/* User Info + Logout */}
+            <div className="flex items-center gap-4 text-sm">
+                <span className="text-blue-100">
+                    👤 {user?.username}{' '}
+                    <span className="capitalize bg-blue-500 px-2 py-0.5 rounded-full text-xs">
+                        {user?.role}
+                    </span>
+                </span>
+                <button
+                    onClick={handleLogout}
+                    className="bg-white text-blue-600 px-3 py-1 rounded-lg font-semibold hover:bg-blue-50 transition text-sm"
+                >
+                    Logout
+                </button>
             </div>
         </nav>
     );
