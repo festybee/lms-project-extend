@@ -1,8 +1,9 @@
 import axios from 'axios';
 
 
+//  Change the baseURL to match frontend Proxy - before 'http://localhost:8000/api'
 const API = axios.create({
-    baseURL: 'http://localhost:8000/api',
+    baseURL: 'api',
 });
 
 
